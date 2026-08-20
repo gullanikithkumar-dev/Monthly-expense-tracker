@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<style>
+body{
+background:linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:Segoe UI;
+}
+
+.box{
+background:white;
+padding:40px;
+border-radius:16px;
+width:330px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#6366f1;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#4f46e5;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🎉 Create Account</h2>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+window.onload = function(){
+    showPopup("{{ messages[0] }} 🎉");
+}
+</script>
+{% endif %}
+{% endwith %}
+
+<form method="POST">
+<input type="text" name="username" placeholder="👤 Username" required>
+<input type="email" name="email" placeholder="📧 Email" required>
+<input type="password" name="password" placeholder="🔒 Password" required>
+<button>🚀 Register</button>
+</form>
+
+<p><a href="/login">Already have account 🔑</a></p>
+
+</div>
+
+<div id="popup"></div>
+
+<script>
+function showPopup(message, color="#10b981"){
+    let popup = document.getElementById("popup");
+    popup.innerHTML = message;
+    popup.style.background = color;
+    popup.style.position = "fixed";
+    popup.style.top = "20px";
+    popup.style.right = "20px";
+    popup.style.padding = "12px 20px";
+    popup.style.borderRadius = "8px";
+    popup.style.color = "white";
+    popup.style.display = "block";
+    popup.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+    popup.style.animation = "slide 0.4s ease";
+
+    setTimeout(()=>{
+        popup.style.display = "none";
+    },2000);
+}
+</script>
+
+<style>
+@keyframes slide{
+from{ transform:translateX(100px); opacity:0; }
+to{ transform:translateX(0); opacity:1; }
+}
+</style>
+
+</body>
+</html>
